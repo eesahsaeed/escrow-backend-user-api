@@ -1,0 +1,11 @@
+{
+  "lambda": {
+    "role": "users-api-executor",
+    "name": "users-api",
+    "region": "us-east-1"
+  },
+  "api": {
+    "id": "gj400s9yo9",
+    "module": "app"
+  }
+}

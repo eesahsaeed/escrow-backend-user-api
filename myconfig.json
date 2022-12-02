@@ -1,0 +1,13 @@
+{
+  "lambda": {
+    "role": "users-api-executor",
+    "name": "users-api",
+    "region": "us-east-1"
+  },
+  "api": {
+    "id": "gj400s9yo9",
+    "module": "app",
+    "url": "https://gj400s9yo9.execute-api.us-east-1.amazonaws.com/latest",
+    "users-table-arn": "arn:aws:dynamodb:us-east-1:567106720048:table/users-table"
+  }
+}
