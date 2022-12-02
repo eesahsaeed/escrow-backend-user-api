@@ -1,7 +1,9 @@
 
 const Api = require('claudia-api-builder');
+const api = new Api();
+
 const register = require('./handlers/register-user');
-const api = new Api()
+const update = require("./handlers/update-user");
 
 api.post("/users/register", (request) => {
   return register(request);
