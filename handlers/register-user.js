@@ -5,6 +5,7 @@ const docClient = new AWS.DynamoDB.DocumentClient();
 const {template} = require("./email-template");
 const {v4} = require("uuid");
 const nodemailer = require("nodemailer");
+const CalculateAge = require("calculate-age");
 
 async function register(request){
   let user = JSON.parse(request.body);
@@ -19,6 +20,27 @@ async function register(request){
 
   try{
     if (user.password === confirmPassword){
+
+      if (user.password.length < 8){
+        return {
+          errors: {
+            password: {message: "password must be at least 8 characters long"}
+          },
+          "_message": "Password must be at least 8 characters long"
+        }
+      }
+
+      let age = new CalculateAge(values.dateOfBirth, new Date()).getObject();
+
+      if (age.years < 18){
+        return {
+          errors: {
+            password: {message: "You must be at least 18 years old to register"}
+          },
+          "_message": "You must be at least 18 years old to register"
+        }
+      }
+
       const hash = bcrypt.hashSync(user.password, 10)
       user.password = hash;
       user.confirmPassword = "";
@@ -94,6 +116,7 @@ async function register(request){
           id, 
           password: "", 
           confirmPassword: "",
+          firstForm: true
         },
         success: true
       };
@@ -102,7 +125,8 @@ async function register(request){
         TableName: "users-table",
         Item: {
           id,
-          ...user
+          ...user,
+          firstForm: true
         }
       }).promise()
       .then(function(data){

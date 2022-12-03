@@ -9,7 +9,7 @@ api.post("/users/register", (request) => {
   return register(request);
 });
 
-api.post("/users/second-register", (request) => {
+api.post("/users/update-user", (request) => {
   return update(request);
 });
 
