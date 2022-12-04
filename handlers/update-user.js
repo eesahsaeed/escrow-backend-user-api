@@ -140,7 +140,7 @@ async function update(request){
         ":bankStatement": user.bankStatement,
         ":transactions": user.transactions,
         ":firstForm": user.firstForm,
-        ":secondForm": user.secondForm
+        ":secondForm": true
       }
     };
   }

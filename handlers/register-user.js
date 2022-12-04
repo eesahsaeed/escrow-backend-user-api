@@ -30,7 +30,7 @@ async function register(request){
         }
       }
 
-      let age = new CalculateAge(values.dateOfBirth, new Date()).getObject();
+      let age = new CalculateAge(new Date(values.dateOfBirth), new Date()).getObject();
 
       if (age.years < 18){
         return {
@@ -124,8 +124,8 @@ async function register(request){
       let newUser = await docClient.put({
         TableName: "users-table",
         Item: {
-          id,
           ...user,
+          id,
           firstForm: true
         }
       }).promise()
