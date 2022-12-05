@@ -5,7 +5,6 @@ const docClient = new AWS.DynamoDB.DocumentClient();
 const {template} = require("./email-template");
 const {v4} = require("uuid");
 const nodemailer = require("nodemailer");
-const CalculateAge = require("calculate-age");
 
 async function register(request){
   let user = JSON.parse(request.body);
@@ -27,17 +26,6 @@ async function register(request){
             password: {message: "password must be at least 8 characters long"}
           },
           "_message": "Password must be at least 8 characters long"
-        }
-      }
-
-      let age = new CalculateAge(new Date(values.dateOfBirth), new Date()).getObject();
-
-      if (age.years < 18){
-        return {
-          errors: {
-            password: {message: "You must be at least 18 years old to register"}
-          },
-          "_message": "You must be at least 18 years old to register"
         }
       }
 
