@@ -2,7 +2,6 @@
 function template(userName){
   return `
   <!DOCTYPE html>
-
   <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
   <head>
   <title></title>
@@ -496,21 +495,21 @@ function template(userName){
   `
 }
 
-function transactionTemplate(name, amount){
+function sendTokenTemplate(token){
   return `
-    <p>
-      An order request has been submitted.
-    </p>
-    <p>
-      Go to the Admin dashboard for more details on the transaction.
-    </p>
-    <p>
-      Name: ${name}
-    </p>
-    <p>
-      Amount: ${amount}
-    </p>
+  <!DOCTYPE html>
+  <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+  <title></title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <!--[if mso]><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch><o:AllowPNG/></o:OfficeDocumentSettings></xml><![endif]-->
+  </head>
+  <body style="background-color: #f9f9f9; margin: 5px; padding: 20px; -webkit-text-size-adjust: none; text-size-adjust: none;">
+    <b>${token}</b>
+  </body>
+  </html>
   `;
 }
 
-module.exports = {template, transactionTemplate};
+module.exports = {template, sendTokenTemplate};
